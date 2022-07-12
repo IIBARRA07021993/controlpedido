@@ -1,0 +1,7 @@
+{
+  "name": "controlpedido",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
