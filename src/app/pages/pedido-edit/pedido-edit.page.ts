@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
-import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx'
 import { AlertController, IonInput } from '@ionic/angular';
 import { Pedidosdet, Pellet } from 'src/app/interfaces/interfaces';
 import { ApiService } from 'src/app/services/api.service';
@@ -31,9 +31,16 @@ export class PedidoEditPage implements OnInit {
                 private ultilService:UtilService,
                 private barcodeScanner: BarcodeScanner,
                 public alertController: AlertController,
-                private activatedRoute: ActivatedRoute,) {  }
+                private activatedRoute: ActivatedRoute,
+                private keyboard: Keyboard
+                ) {  
+
+
+                  
+                }
 
 async ngOnInit() {
+ 
   await this.f_get_parametros();
   console.log('f_get_parametros')
   this.ultilService.showLoading('Cargando detalle..')
@@ -44,8 +51,14 @@ async ngOnInit() {
   await this.ultilService.loading.dismiss();
  console.log('f_get_parametros')
   await this.codpal.setFocus() 
+  
 }
 
+
+hide(){
+
+  this.keyboard.hide();
+}
 
 f_get_parametros(){
   return new Promise(  async (resolve)=>{

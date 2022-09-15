@@ -21,7 +21,7 @@
             <ion-col size="3" class="ion-padding-top">
               <ion-icon (click)="fn_scanner()"  name="barcode-outline" size="large"></ion-icon>
             </ion-col>
-          <ion-col size="9">
+          <ion-col size="6">
             <ion-label  position="floating">Código</ion-label>
           <ion-input #codpal (keydown.enter)="enterkey()"  
                         name="codigopal" 
@@ -32,7 +32,6 @@
                         maxlength="10"></ion-input>
           </ion-col>
           </ion-row>
-          
         </ion-item>
         
   </form>
@@ -45,7 +44,7 @@
 
 <ion-content >
   <ion-list >
-    <ion-card *ngFor="let det of pedidos_det " >
+    <ion-card *ngFor="let det of pedidos_det" >
     <ion-item  class="itemapp" lines="full" >
       <ion-label>
         <ion-label id="presentacion">

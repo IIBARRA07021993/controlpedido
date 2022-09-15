@@ -10,6 +10,7 @@ import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 import { Device } from "@awesome-cordova-plugins/device/ngx";
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx'
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +22,7 @@ import { Device } from "@awesome-cordova-plugins/device/ngx";
               SQLite,
               BarcodeScanner,
               Vibration,
-              Device
+              Device,Keyboard
             ],
   bootstrap: [AppComponent],
 })

@@ -21,6 +21,7 @@
     "@angular/router": "^14.0.0",
     "@awesome-cordova-plugins/barcode-scanner": "^5.44.0",
     "@awesome-cordova-plugins/device": "^5.45.0",
+    "@awesome-cordova-plugins/keyboard": "^5.45.0",
     "@awesome-cordova-plugins/sqlite": "^5.44.0",
     "@awesome-cordova-plugins/vibration": "^5.44.0",
     "@capacitor/app": "1.1.1",
