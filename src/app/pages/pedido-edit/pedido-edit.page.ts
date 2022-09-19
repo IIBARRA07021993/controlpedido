@@ -41,24 +41,21 @@ export class PedidoEditPage implements OnInit {
 
 async ngOnInit() {
  
+
+
   await this.f_get_parametros();
   console.log('f_get_parametros')
-  this.ultilService.showLoading('Cargando detalle..')
+ //this.ultilService.showLoading('Cargando detalle..')
   await  this.fn_getPedidos_det(this.pedido.c_codigo_tem.trim() 
                                 + this.pedido.c_codigo_emp.trim() 
                                 +this.pedido.c_codigo_pdo.trim());
 
-  await this.ultilService.loading.dismiss();
+ // await this.ultilService.loading.dismiss();
  console.log('f_get_parametros')
   await this.codpal.setFocus() 
   
 }
 
-
-hide(){
-
-  this.keyboard.hide();
-}
 
 f_get_parametros(){
   return new Promise(  async (resolve)=>{

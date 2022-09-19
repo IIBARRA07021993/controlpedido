@@ -35,11 +35,11 @@ usuario_login : string
 
     this.usuario_login = environment.usuario_login
     this.ls_estatus =  this.activatedRoute.snapshot.paramMap.get('id');
-    await  this.utilserv.showLoading('Cargando Pedidos...')
+   // await  this.utilserv.showLoading('Cargando Pedidos...')
     console.log('showLoading');
     await this.getPedidos()
     console.log('getPedidos');
-    await this.utilserv.loading.dismiss();
+   // await this.utilserv.loading.dismiss();
     console.log('dismiss');
    
    
