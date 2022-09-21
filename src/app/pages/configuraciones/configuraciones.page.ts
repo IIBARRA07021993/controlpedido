@@ -13,41 +13,42 @@ import { environment } from 'src/environments/environment';
 })
 export class ConfiguracionesPage implements OnInit {
 
-  
-   configSer = {
-    url_api_app :'',
-    terminal_app :''   
+
+  configSer = {
+    url_api_app: '',
+    terminal_app: ''
   }
 
   constructor(
-              private  sqliteServ  : SqliteService,
-              private  configServ : ConfiguracionService,
-              private device :Device,
-              public navCtrl: NavController
-             ) { }
+    private sqliteServ: SqliteService,
+    private configServ: ConfiguracionService,
+    private device: Device,
+    public navCtrl: NavController
+  ) { }
 
-  async  ngOnInit() {
+  async ngOnInit() {
     await this.configServ.getappconfig();
-    
+
     this.configSer.url_api_app = environment.url_api_app
     this.configSer.terminal_app = environment.terminal_app
   }
 
 
-  fn_cargar_modelo(){
+  fn_cargar_modelo() {
     this.configSer.terminal_app = this.device.model
-    environment.terminal_app= this.device.model}
-  
-  async  of_save_appconfig(){
+    environment.terminal_app = this.device.model
+  }
+
+  async of_save_appconfig() {
     console.log(this.configSer);
     await this.sqliteServ.fn_delete_table("appconfig");
-    await  this.configServ.fn_save_appconfig(this.configSer).then((data) => {
+    await this.configServ.fn_save_appconfig(this.configSer).then((data) => {
       this.navCtrl.pop();
-    }).catch ((e) => { 
+    }).catch((e) => {
       console.log(e)
-      alert(JSON.stringify( e))
+      alert(JSON.stringify(e))
       this.navCtrl.pop();
-      
+
     });
   }
 
