@@ -27,6 +27,18 @@ const routes: Routes = [
   {
     path: 'configuraciones',
     loadChildren: () => import('./pages/configuraciones/configuraciones.module').then( m => m.ConfiguracionesPageModule)
+  },
+  {
+    path: 'pedido-pal',
+    loadChildren: () => import('./pages/pedido-pal/pedido-pal.module').then( m => m.PedidoPalPageModule)
+  },
+  {
+    path: 'palet-ubi',
+    loadChildren: () => import('./pages/palet-ubi/palet-ubi.module').then( m => m.PaletUbiPageModule)
+  },
+  {
+    path: 'man-virtual',
+    loadChildren: () => import('./pages/man-virtual/man-virtual.module').then( m => m.ManVirtualPageModule)
   }
 ];
 

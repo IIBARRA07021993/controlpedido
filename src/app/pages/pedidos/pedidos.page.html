@@ -70,7 +70,7 @@
   </ion-card>
 </ion-list>
 
-<ion-list  *ngIf="(pedidos |async ) == null">
+<ion-list  *ngIf="(pedidos|async) == null">
   <ion-card   *ngFor="let ped of [1,1,1,1,1,1] ">
     <ion-item  class="itemapp" lines="full"  >
       <ion-grid fixed>

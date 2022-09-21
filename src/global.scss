@@ -25,22 +25,16 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-.alerta{
-
-    /*
-    --background: rgba(79, 235, 79, 0.349);
-    --backdrop-opacity	Opacity of the backdrop
-    --background	Background of the alert
-    --height	Height of the alert
-    --max-height	Maximum height of the alert
-    --max-width	Maximum width of the alert
-    --min-height	Minimum height of the alert
-    --min-width	Minimum width of the alert
-    --width*/
-}
-
 
 
 ion-skeleton-text {
-    --border-radius: 9999px;
-    }
+    --border-radius: 9999px; 
+
+}
+
+
+ion-title{
+font-size: 20px;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+    

@@ -10,10 +10,11 @@ import { SQLite } from '@awesome-cordova-plugins/sqlite/ngx';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { Vibration } from '@awesome-cordova-plugins/vibration/ngx';
 import { Device } from "@awesome-cordova-plugins/device/ngx";
-import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx'
+import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx';
+import { PedidoPalPipe } from './pages/pedido-pal.pipe'
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, PedidoPalPipe],
   imports: [BrowserModule, 
             IonicModule.forRoot(), 
             AppRoutingModule,
