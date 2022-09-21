@@ -25,6 +25,7 @@ export class PedidoEditPage implements OnInit {
   codigo :string ='';
   pallet : Pellet[]= [];
   precentacion_add :string[] =[] ;
+  utilserv: any;
 
   constructor( 
                 private apiserv:ApiService,
@@ -45,17 +46,16 @@ async ngOnInit() {
 
   await this.f_get_parametros();
   console.log('f_get_parametros')
- //this.ultilService.showLoading('Cargando detalle..')
+  await this.ultilService.showLoading('Cargando detalle..')
   await  this.fn_getPedidos_det(this.pedido.c_codigo_tem.trim() 
                                 + this.pedido.c_codigo_emp.trim() 
                                 +this.pedido.c_codigo_pdo.trim());
 
- // await this.ultilService.loading.dismiss();
+  await this.ultilService.loading.dismiss();
  console.log('f_get_parametros')
   await this.codpal.setFocus() 
   
 }
-
 
 f_get_parametros(){
   return new Promise(  async (resolve)=>{
@@ -79,10 +79,10 @@ async enterkey(){
   console.log('paso 3')
   await this.ultilService.loading.dismiss();
   console.log('dismiss');
+
+  await this.codpal.setFocus();
+  this.codigo =  ""
 }
-
-
-
   fn_usp_control_pedidos_app(){
   return new Promise( async  (resolve ,reject)=>{
     var json = {
@@ -94,9 +94,9 @@ async enterkey(){
 
         console.log(json)
         console.log(JSON.stringify(json))
-        this.apiserv.StoredProcedureput( 'usp_control_pedidos_app?as_operation=1+&as_json='+JSON.stringify(json)
-                                        
-                                      ).subscribe( (resp:string )=>{
+        this.apiserv.StoredProcedureput( 
+                      'usp_control_pedidos_app?as_operation=1+&as_json='+JSON.stringify(json)
+                    ).subscribe( (resp:string )=>{
         
           console.log(resp)
           console.log('PASO 2')
@@ -131,11 +131,18 @@ async enterkey(){
               resolve(false);
             }
           
-      })
+      },(error)=>{
 
-    
-
-
+        console.error(JSON.stringify(error))
+        this.utilserv.presentToast( 
+          'Error' ,
+          'Ocurrio un error en la Peticion al API' ,  
+          1500 ,
+          'warning-outline' ,
+          'danger');
+          resolve(false)
+  
+       })
 
   })
 
@@ -149,7 +156,7 @@ async fn_scanner(){
   await this.barcodeScanner.scan().then( async barcodeData => {
       this.codigo  = barcodeData.text
       console.log('Barcode data', barcodeData);
-     await this.enterkey()
+      await this.enterkey()
  }).catch(err => {
      console.log('Error', err);
      alert( JSON.stringify(err) );
@@ -167,9 +174,23 @@ fn_getPedidos_det(id:string){
             this.pedidos_det.push(element)
           });
            console.log(this.pedidos_det); }
-
             resolve(true)
-          })
+        
+
+          
+          },(error)=>{
+
+            console.error(JSON.stringify(error))
+            this.utilserv.presentToast( 
+              'Error' ,
+              'Ocurrio un error en la Peticion al API' ,  
+              1500 ,
+              'warning-outline' ,
+              'danger');
+              resolve(false)
+      
+           }
+          )
         })
         
 }

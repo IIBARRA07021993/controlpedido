@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
+import { Componentes } from 'src/app/interfaces/interfaces';
 import { ApiService } from 'src/app/services/api.service';
+import { DataService } from 'src/app/services/data.service';
 import { UtilService } from 'src/app/services/util.service';
 import { environment } from 'src/environments/environment';
 import { PedidoEditPage } from '../pedido-edit/pedido-edit.page';
@@ -28,30 +30,23 @@ usuario_login : string
                 private activatedRoute: ActivatedRoute,
                 private actionSheetController: ActionSheetController,
                 private modalController: ModalController,
-                private utilserv : UtilService
+                private dataService:DataService
                ) { }
 
   async  ngOnInit() {
-
     this.usuario_login = environment.usuario_login
     this.ls_estatus =  this.activatedRoute.snapshot.paramMap.get('id');
-   // await  this.utilserv.showLoading('Cargando Pedidos...')
-    console.log('showLoading');
     await this.getPedidos()
     console.log('getPedidos');
-   // await this.utilserv.loading.dismiss();
-    console.log('dismiss');
-   
-   
+
   }
 
 
   async getPedidos(){
     return  new Promise((resolve ) => {
       this.setTitulo();
-      this.pedidos =  this.apiserv.getapi('v_pedidosapp')
-       resolve(true)
-      
+      this.pedidos = this.apiserv.getapi('v_pedidosapp')
+      resolve(true)
     })}
 
    async doRefresh(event){

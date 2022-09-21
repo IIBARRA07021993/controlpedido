@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
 
 
+
 import { ApiService } from 'src/app/services/api.service';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
 import { UtilService } from 'src/app/services/util.service';
@@ -41,31 +42,28 @@ ngOnInit() {
 } 
 
 async login(){
-
+  await  this.ultilService.showLoading('Validando Usuario...')
+  console.log('showLoading');
     await this.configServ.getappconfig()
       console.log('getappconfig');
-
-      await this.valida_login().then(async ( resolve  )=>{
+      await this.fn_valida_login().then(async ( resolve  )=>{
         console.log('valida_login');
        if (resolve) {
-          await  this.getusuariologin();
+          await  this.fn_getusuariologin();
           console.log('getusuariologin');
         }
     });
-    
+
+    await this.ultilService.loading.dismiss();
+    console.log('dismiss');
 }
 
-configuraciones(){
-
+fn_configuraciones(){
   this.router.navigateByUrl('configuraciones');
-
-    //this.modalConfig();
 }
 
-valida_login(){
+fn_valida_login(){
   return  new Promise((resolve ) => {
-
-
     if (typeof  environment.url_api_app === 'undefined' || environment.url_api_app == '' ) {
           
       this.ultilService.presentToast( 
@@ -100,7 +98,6 @@ valida_login(){
       resolve(false)
   }
 
-
   resolve(true)
   })  
 }
@@ -108,11 +105,10 @@ valida_login(){
 
 
 
-getusuariologin(){
-return  new Promise((resolve,rejects) => {
-
-
-  this.apiService.getapi('assusuarios/login?codigo='+ this.usuario.user.toUpperCase().trim()).subscribe( (resp :any ) => {
+fn_getusuariologin(){
+return  new Promise((resolve) => {
+  this.apiService.getapi('assusuarios/login?codigo='+ this.usuario.user.toUpperCase().trim())
+  .subscribe( (resp :any ) => {
     console.log(resp);
     if (resp.length == 0 ) {  
   
@@ -133,7 +129,7 @@ return  new Promise((resolve,rejects) => {
         environment.usuario_login =  this.usuario.user
         this.usuario.user =''
         this.usuario.password =''
-        this.router.navigateByUrl('pedidos/1');
+        this.router.navigateByUrl('inicio');
         resolve(true)
   
       }else{
@@ -149,16 +145,23 @@ return  new Promise((resolve,rejects) => {
   
     }
   
-  }),error =>{
-      console.log(error);
-      alert( JSON.stringify(error) );
-      rejects(false)
-  }
+  },( error) => {
+    console.error(JSON.stringify(error))
+    this.ultilService.presentToast( 
+      'Error' ,
+      'Ocurrio un error en la peticion al API' ,  
+      1500 ,
+      'warning-outline' ,
+      'danger');
+      resolve(false)
+
+  })
+  
 })  
 }
 
 
-async modalConfig (){
+async fn_modalConfig (){
     const modal = await this.modalController.create({
     component:ConfiguracionesPage  }   );
       await modal.present();

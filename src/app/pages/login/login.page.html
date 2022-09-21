@@ -9,7 +9,7 @@
       <h1>Pedidos <br>
          AgroSmart</h1>
     </ion-title> 
-        <ion-icon (click)="configuraciones()" 
+        <ion-icon (click)="fn_configuraciones()" 
                   class="ion-padding" 
                   slot="end"  
                   name="settings-outline" 
@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content class="ion-padding">
+<ion-content  [fullscreen] ="true" class="ion-padding">
   <ion-img    src="assets\icon\agrosmartlogo.jpg">  </ion-img>
   <form #formulario="ngForm" class="ion-padding" > 
     <ion-item class="ion-margin-bottom">

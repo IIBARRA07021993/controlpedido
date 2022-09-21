@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy, RouterLink } from '@angular/router';
 import {  HttpClientModule  } from "@angular/common/http";
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
@@ -17,12 +17,14 @@ import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx'
   imports: [BrowserModule, 
             IonicModule.forRoot(), 
             AppRoutingModule,
-            HttpClientModule ],
+            HttpClientModule ,
+           ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
               SQLite,
               BarcodeScanner,
               Vibration,
-              Device,Keyboard
+              Device,
+              Keyboard
             ],
   bootstrap: [AppComponent],
 })

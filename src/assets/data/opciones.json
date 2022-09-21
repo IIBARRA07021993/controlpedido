@@ -1,7 +1,17 @@
 [ 
     {
-      "icon":"copy-outline",
-      "name":"Pedidos",
+      "icon":"push-outline",
+      "name":"Surtir Pedidos",
+      "url":"/pedidos/1"
+    },
+    {
+      "icon":"location-outline",
+      "name":"Posicionamiento del pallet",
+      "url":"/pedidos/1"
+    },
+    {
+      "icon":"layers-outline",
+      "name":"Manifiesto Virtual",
       "url":"/pedidos/1"
     }
 ]

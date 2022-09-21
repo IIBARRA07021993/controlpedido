@@ -1,3 +1,8 @@
+
+<app-menu  [componentes] = "componentes"></app-menu>
+
+
+<ion-app  id="main">
 <ion-header  >
   <ion-toolbar color="success"  class="ion-padding-top">
   <ion-buttons slot="start">
@@ -7,18 +12,21 @@
       <h3>Control de Pedidos</h3> 
      </ion-title>
       <ion-avatar slot="end"  class="ion-padding">
-        <img src="assets\icon\as.jpg"> 
+        <img src="assets\icon\as.jpg"  > 
       </ion-avatar>
   </ion-toolbar>
 </ion-header>
- 
-<ion-content>
+
+<ion-content [fullscreen] ="true"  >
   <ion-list >
-    <ion-item  *ngFor="let c of componentes | async"
-       [routerLink]="c.url"  >
-      <ion-icon slot="start" [name]="c.icon"  color="success" ></ion-icon>
-      {{c.name}}
-    </ion-item>
-  </ion-list>  
+    <ion-card *ngFor="let c of componentes | async">
+        <ion-item  class="ion-no-border"  detail="true"
+          [routerLink]="c.url"  >
+          <ion-icon slot="start" [name]="c.icon"  ></ion-icon>
+          {{c.name}}
+        </ion-item>
+      </ion-card>
+    </ion-list>  
 </ion-content>
 
+</ion-app>

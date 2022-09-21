@@ -1,6 +1,10 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Observable , throwError } from 'rxjs';
+
+import { map, catchError } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +19,33 @@ export class ApiService {
     headers: new  HttpHeaders ()
     .set('Basic', `${environment.api_token}`)
     .set('Access-Control-Allow-Origin' , '*')
-    
   }
      return  this.http.get( environment.url_api_app + url , header )
-  
+     
+     .pipe(
+      
+      catchError(err => {
+          console.warn(JSON.stringify(err))
+          return throwError(JSON.stringify(err))
+      })
+      )
   }
 
-
-  StoredProcedureput(url){
+  StoredProcedureput(url:string ){
     const header = {
       headers: new HttpHeaders()
       .set('Basic', `${environment.api_token}`)
       .set('Access-Control-Allow-Origin', '*')
     }
+    return this.http.put(environment.url_api_app + url ,  header )
+      .pipe(
+        catchError(err => {
+            console.warn(JSON.stringify(err))
+            return throwError(JSON.stringify(err))
+        })
+      );   
 
-    return this.http.put(environment.url_api_app + url  , header);
+    
   }
 
 
