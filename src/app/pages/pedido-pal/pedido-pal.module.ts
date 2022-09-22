@@ -8,6 +8,7 @@ import { PedidoPalPageRoutingModule } from './pedido-pal-routing.module';
 
 import { PedidoPalPage } from './pedido-pal.page';
 import { ComponentsModule } from 'src/app/components/components.module';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     PedidoPalPageRoutingModule,
-    ComponentsModule
+    ComponentsModule,PipesModule
   ],
   declarations: [PedidoPalPage]
 })

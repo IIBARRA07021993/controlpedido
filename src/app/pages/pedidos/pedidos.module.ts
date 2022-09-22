@@ -16,7 +16,8 @@ import { PipesModule } from 'src/app/pipes/pipes.module';
     FormsModule,
     IonicModule,
     PedidosPageRoutingModule,
-    ComponentsModule,PipesModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [PedidosPage]
 })

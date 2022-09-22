@@ -4,8 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
  {
     path: '',
-    //redirectTo: 'login',
-    redirectTo: 'palet-ubi', 
+    redirectTo: 'login',
+    //redirectTo: 'palet-ubi', 
     pathMatch: 'full'
   },
   {

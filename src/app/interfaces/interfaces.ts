@@ -80,4 +80,5 @@ export interface Palletpedido  {
    c_codigo_eti: string;
    c_codigo_col: string;
    n_bulxpa_pal: number;
+   n_peso_pal: number;
 }

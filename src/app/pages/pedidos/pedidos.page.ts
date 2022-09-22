@@ -2,10 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
-import { Componentes } from 'src/app/interfaces/interfaces';
 import { ApiService } from 'src/app/services/api.service';
-import { DataService } from 'src/app/services/data.service';
-import { UtilService } from 'src/app/services/util.service';
 import { environment } from 'src/environments/environment';
 import { PedidoEditPage } from '../pedido-edit/pedido-edit.page';
 
