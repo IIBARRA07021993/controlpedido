@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaletUbiPage implements OnInit {
 
+
+  titulo ='Posicionamiento del pallet'
   constructor() { }
 
   ngOnInit() {

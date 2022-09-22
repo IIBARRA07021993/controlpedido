@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PedidoPalPageRoutingModule } from './pedido-pal-routing.module';
 
 import { PedidoPalPage } from './pedido-pal.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PedidoPalPageRoutingModule
+    PedidoPalPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PedidoPalPage]
 })

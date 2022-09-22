@@ -7,11 +7,11 @@
     {
       "icon":"location-outline",
       "name":"Posicionamiento del pallet",
-      "url":"/pedidos/1"
+      "url":"/palet-ubi"
     },
     {
       "icon":"layers-outline",
       "name":"Manifiesto Virtual",
-      "url":"/pedidos/1"
+      "url":"/man-virtual"
     }
 ]

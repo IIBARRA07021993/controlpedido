@@ -34,8 +34,8 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-card *ngFor="let det of pedidos_det">
-      <ion-item class="itemapp" lines="full">
+    <ion-card  (click)="fn_get_pallet_pededito_det( det.c_codigo_pro +det.c_codigo_eti  + det.c_codigo_col)"   *ngFor="let det of pedidos_det"  > 
+      <ion-item    class="itemapp" lines="full">
         <ion-label>
           <ion-label id="presentacion">
             <h4>[{{det.c_codigo_pro}}] -{{det.v_nombre_pro}}</h4>

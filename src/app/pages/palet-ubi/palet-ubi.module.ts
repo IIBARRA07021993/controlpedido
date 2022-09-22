@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PaletUbiPageRoutingModule } from './palet-ubi-routing.module';
 
 import { PaletUbiPage } from './palet-ubi.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PaletUbiPageRoutingModule
+    PaletUbiPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PaletUbiPage]
 })

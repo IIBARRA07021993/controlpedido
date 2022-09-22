@@ -1,9 +1,32 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>pedido-pal</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [titulo]="titulo"> </app-header>
+
 
 <ion-content>
+    <ion-list class="ion-padding">
+        <ion-grid>
+            <ion-row >
+                <ion-col  id="col-cab"  size="8" class="ion-text-start">
+                    <ion-label >Pallet</ion-label> 
+                </ion-col>
+                <ion-col  id="col-cab" size="2" class="ion-text-center">
+                    <ion-label>Cajas</ion-label> 
+                </ion-col>
+                <ion-col  id="col-cab" vsize="2" class="ion-text-center">
+                    <ion-label>Acción</ion-label>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngFor="let pal of palletpedido">
+                <ion-col  id="col-det" size="8" class="ion-text-start">
+                        <ion-label> {{pal.c_codigo_pal}}</ion-label>
+                </ion-col>
+                <ion-col id="col-det"  size="2" class="ion-text-center">
+                    <ion-label> {{pal.n_bulxpa_pal}}</ion-label>
+                </ion-col>
+                <ion-col id="col-det"  size="2" class="ion-text-center">
+                    <ion-icon name="trash-outline"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
 
+    </ion-list>
 </ion-content>

@@ -16,94 +16,100 @@ import { PedidoEditPage } from '../pedido-edit/pedido-edit.page';
 })
 export class PedidosPage implements OnInit {
 
-pedidos :Observable<any>
-ls_estatus : string;
-titulo :string =''
-icono :string =''
-texto_filtro:string =''
-usuario_login : string
+  pedidos: Observable<any>
+  ls_estatus: string;
+  titulo: string = ''
+  icono: string = ''
+  texto_filtro: string = ''
+  usuario_login: string
 
 
 
-  constructor(  private   router : Router  ,
-                private apiserv : ApiService,
-                private activatedRoute: ActivatedRoute,
-                private actionSheetController: ActionSheetController,
-                private modalController: ModalController,
-                private dataService:DataService
-               ) { }
+  constructor(private router: Router,
+    private apiserv: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private actionSheetController: ActionSheetController,
+    private modalController: ModalController
+  ) { }
 
-  async  ngOnInit() {
-    this.usuario_login = environment.usuario_login
-    this.ls_estatus =  this.activatedRoute.snapshot.paramMap.get('id');
+  async ionViewWillEnter() {
+    console.log('ionViewWillEnter');
     await this.getPedidos()
-    console.log('getPedidos');
 
   }
 
 
-  async getPedidos(){
-    return  new Promise((resolve ) => {
+  async ngOnInit() {
+    console.log('ngOnInit');
+    this.usuario_login = environment.usuario_login
+    this.ls_estatus = this.activatedRoute.snapshot.paramMap.get('id');
+
+
+  }
+
+  async getPedidos() {
+    return new Promise((resolve) => {
       this.setTitulo();
       this.pedidos = this.apiserv.getapi('v_pedidosapp')
       resolve(true)
-    })}
+    })
+  }
 
-   async doRefresh(event){
+  async doRefresh(event) {
 
-      console.log(event);
-      await this.getPedidos();
-      console.log('getPedidos');
-      await  event.target.complete();
-      console.log('event.target.complete');
+    console.log(event);
+    await this.getPedidos();
+    console.log('getPedidos');
+    await event.target.complete();
+    console.log('event.target.complete');
 
-    }
+  }
 
-  setTitulo(){
+  setTitulo() {
 
     switch (this.ls_estatus) {
-      case '1':  
-          this.titulo ='Pendientes'
-          this.icono ='copy-outline'
+      case '1':
+        this.titulo = 'Pendientes'
+        this.icono = 'copy-outline'
         break;
-      case '2':  
-          this.titulo ='Surtiendo'
-          this.icono ='duplicate-outline'
+      case '2':
+        this.titulo = 'Surtiendo'
+        this.icono = 'duplicate-outline'
         break;
-      case '3':  
-          this.titulo ='Surtido'
-          this.icono ='shield-checkmark-outline'
+      case '3':
+        this.titulo = 'Surtido'
+        this.icono = 'shield-checkmark-outline'
         break;
-      default:   
-          this.titulo ='Pendientes'
-          this.icono ='copy-outline'
+      default:
+        this.titulo = 'Pendientes'
+        this.icono = 'copy-outline'
         break;
     }
   }
 
 
- 
-  
-  fn_surtir_ped(pedido){
+
+
+  fn_surtir_ped(pedido :any) {
     console.log(pedido);
-    
+
     this.router.navigateByUrl(
-      'pedido-edit/'  
-      +pedido.c_codigo_tem +'/'  
-      +pedido.c_codigo_emp +'/'  
-      +pedido.c_codigo_pdo+'/'  
-      +pedido.v_nombre_dis
-      
+      'pedido-edit/'
+      + pedido.c_codigo_tem + '/'
+      + pedido.c_codigo_emp + '/'
+      + pedido.c_codigo_pdo + '/'
+      + pedido.v_nombre_dis
+
     );
-   // this.modal_pedido_edit(pedido);
+    
   }
 
 
-   async presentActionSheet() {
+  async presentActionSheet() {
     const actionSheet = await this.actionSheetController.create({
-      mode:'ios',
+      mode: 'ios',
       header: 'Estatus Pedido',
-      subHeader:'Seleccione un Estatus',
+      subHeader: 'Seleccione un Estatus',
       buttons: [{
         text: 'Pendiente',
         icon: 'copy-outline',
@@ -133,33 +139,34 @@ usuario_login : string
     await actionSheet.present();
 
     const { data } = await actionSheet.onDidDismiss();
-    console.log( 'estatus = ' + data );
-    this.ls_estatus =  data
+    console.log('estatus = ' + data);
+    this.ls_estatus = data
     await this.getPedidos();
     console.log('getPedidos');
 
   }
 
-  fn_filtro_pedido(evento){
-      console.log(evento);
-      this.texto_filtro = evento.detail.value;
+  fn_filtro_pedido(evento:any) {
+    console.log(evento);
+    this.texto_filtro = evento.detail.value;
   }
 
 
-  async modal_pedido_edit (pedido){
+  async modal_pedido_edit(pedido:any) {
     console.log(pedido);
     const modal = await this.modalController.create({
-    component:PedidoEditPage ,
-    componentProps:{pedido} }   );
+      component: PedidoEditPage,
+      componentProps: { pedido }
+    });
     await modal.present();
-      modal.onWillDismiss().then(data => {
-        console.log(data);
-      }).catch(error => {
-        console.log(error);
-      })
-    
-    
-    
+    modal.onWillDismiss().then(data => {
+      console.log(data);
+    }).catch(error => {
+      console.log(error);
+    })
+
+
+
   }
 
 }

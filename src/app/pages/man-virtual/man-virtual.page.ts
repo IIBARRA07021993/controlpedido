@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./man-virtual.page.scss'],
 })
 export class ManVirtualPage implements OnInit {
-
+  titulo ='Manifiesto Virtual'
   constructor() { }
 
   ngOnInit() {

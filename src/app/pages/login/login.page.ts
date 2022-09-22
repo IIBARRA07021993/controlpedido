@@ -19,160 +19,178 @@ import { ConfiguracionesPage } from '../configuraciones/configuraciones.page';
 })
 export class LoginPage implements OnInit {
 
-  
+
   usuario = {
-    user :'ADMIN',
-    password :'ccons'
+    user: 'ADMIN',
+    password: 'ccons'
   }
-  
-  constructor( 
-    private   router : Router  ,
-    private apiService:ApiService,
-    private ultilService:UtilService,
+
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private ultilService: UtilService,
     public popoverController: PopoverController,
     private modalController: ModalController,
-    private configServ:ConfiguracionService,
+    private configServ: ConfiguracionService,
+
+
+
+  ) { }
+
+
+  /* 
+ionViewDidEnter() {
+ console.log('Home page did enter');
+ }
+ ionViewDidLeave() {
+ console.log('Home page did leave');
+ }
+ ionViewWillEnter() {
+ console.log('Home page will enter');
+ }
+ ionViewWillLeave() {
+ console.log('Home page will leave');
+ }*/
+
  
-  
 
-    ) { }
+  ngOnInit() {
 
-ngOnInit() {
+  }
 
-} 
-
-async login(){
-  await  this.ultilService.showLoading('Validando Usuario...')
-  console.log('showLoading');
+  async login() {
+    await this.ultilService.showLoading('Validando Usuario...')
+    console.log('showLoading');
     await this.configServ.getappconfig()
-      console.log('getappconfig');
-      await this.fn_valida_login().then(async ( resolve  )=>{
-        console.log('valida_login');
-       if (resolve) {
-          await  this.fn_getusuariologin();
-          console.log('getusuariologin');
-        }
+    console.log('getappconfig');
+    await this.fn_valida_login().then(async (resolve) => {
+      console.log('valida_login');
+      if (resolve) {
+        await this.fn_getusuariologin();
+        console.log('getusuariologin');
+      }
     });
 
     await this.ultilService.loading.dismiss();
     console.log('dismiss');
-}
-
-fn_configuraciones(){
-  this.router.navigateByUrl('configuraciones');
-}
-
-fn_valida_login(){
-  return  new Promise((resolve ) => {
-    if (typeof  environment.url_api_app === 'undefined' || environment.url_api_app == '' ) {
-          
-      this.ultilService.presentToast( 
-      'Configuracion' ,
-      'Falta Configuracion del Api' ,
-      1500 ,
-      'warning-outline' ,
-      'danger');
-      resolve(false)
   }
 
-
-    if (typeof  this.usuario.user === 'undefined' ||this.usuario.user == '' ) {
-      
-      this.ultilService.presentToast( 
-      'Invalido' ,
-      'Usuario No valido' ,
-      1500 ,
-      'warning-outline' ,
-      'danger');
-      resolve(false)
+  fn_configuraciones() {
+    this.router.navigateByUrl('configuraciones');
   }
 
-  if (typeof  this.usuario.password === 'undefined' ||this.usuario.password == '' ) {
-    
-      this.ultilService.presentToast( 
-      'Contraseña Invalida' ,
-      'Contraseña Invalida' ,
-      1500 ,
-      'warning-outline' ,
-      'danger');
-      resolve(false)
-  }
+  fn_valida_login() {
+    return new Promise((resolve) => {
+      if (typeof environment.url_api_app === 'undefined' || environment.url_api_app == '') {
 
-  resolve(true)
-  })  
-}
-
-
-
-
-fn_getusuariologin(){
-return  new Promise((resolve) => {
-  this.apiService.getapi('assusuarios/login?codigo='+ this.usuario.user.toUpperCase().trim())
-  .subscribe( (resp :any ) => {
-    console.log(resp);
-    if (resp.length == 0 ) {  
-  
-      this.ultilService.presentToast( 
-        'Invalido' ,
-        'Usuario No valido' ,
-        1500 ,
-        'warning-outline' ,
-        'danger');
-        resolve(false)
-      
-    }else{
-  
-      let contra :string = resp[0]
-      console.log(contra );
-
-      if (  contra.trim() == this.usuario.password.trim() ) {
-        environment.usuario_login =  this.usuario.user
-        this.usuario.user =''
-        this.usuario.password =''
-        this.router.navigateByUrl('inicio');
-        resolve(true)
-  
-      }else{
-        this.ultilService.presentToast( 
-          'Contraseña Invalida' ,
-          'Contraseña Invalida' ,  
-          1500 ,
-          'warning-outline' ,
+        this.ultilService.presentToast(
+          'Configuracion',
+          'Falta Configuracion del Api',
+          1500,
+          'warning-outline',
           'danger');
-           resolve(false)
+        resolve(false)
       }
-  
-  
-    }
-  
-  },( error) => {
-    console.error(JSON.stringify(error))
-    this.ultilService.presentToast( 
-      'Error' ,
-      'Ocurrio un error en la peticion al API' ,  
-      1500 ,
-      'warning-outline' ,
-      'danger');
-      resolve(false)
-
-  })
-  
-})  
-}
 
 
-async fn_modalConfig (){
+      if (typeof this.usuario.user === 'undefined' || this.usuario.user == '') {
+
+        this.ultilService.presentToast(
+          'Invalido',
+          'Usuario No valido',
+          1500,
+          'warning-outline',
+          'danger');
+        resolve(false)
+      }
+
+      if (typeof this.usuario.password === 'undefined' || this.usuario.password == '') {
+
+        this.ultilService.presentToast(
+          'Contraseña Invalida',
+          'Contraseña Invalida',
+          1500,
+          'warning-outline',
+          'danger');
+        resolve(false)
+      }
+
+      resolve(true)
+    })
+  }
+
+
+
+
+  fn_getusuariologin() {
+    return new Promise((resolve) => {
+      this.apiService.getapi('assusuarios/login?codigo=' + this.usuario.user.toUpperCase().trim())
+        .subscribe((resp: any) => {
+          console.log(resp);
+          if (resp.length == 0) {
+
+            this.ultilService.presentToast(
+              'Invalido',
+              'Usuario No valido',
+              1500,
+              'warning-outline',
+              'danger');
+            resolve(false)
+
+          } else {
+
+            let contra: string = resp[0]
+            console.log(contra);
+
+            if (contra.trim() == this.usuario.password.trim()) {
+              environment.usuario_login = this.usuario.user
+              this.usuario.user = ''
+              this.usuario.password = ''
+              this.router.navigateByUrl('inicio');
+              resolve(true)
+
+            } else {
+              this.ultilService.presentToast(
+                'Contraseña Invalida',
+                'Contraseña Invalida',
+                1500,
+                'warning-outline',
+                'danger');
+              resolve(false)
+            }
+
+
+          }
+
+        }, (error) => {
+          console.error(JSON.stringify(error))
+          this.ultilService.presentToast(
+            'Error',
+            'Ocurrio un error en la peticion al API',
+            1500,
+            'warning-outline',
+            'danger');
+          resolve(false)
+
+        })
+
+    })
+  }
+
+
+  async fn_modalConfig() {
     const modal = await this.modalController.create({
-    component:ConfiguracionesPage  }   );
-      await modal.present();
+      component: ConfiguracionesPage
+    });
+    await modal.present();
 
 
-      modal.onWillDismiss().then(data => {
-        console.log(data);
-      }).catch(error => {
-        console.log(error);
-      })
-  
-}
+    modal.onWillDismiss().then(data => {
+      console.log(data);
+    }).catch(error => {
+      console.log(error);
+    })
+
+  }
 
 }

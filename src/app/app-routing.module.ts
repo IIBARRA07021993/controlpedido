@@ -4,7 +4,8 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
  {
     path: '',
-    redirectTo: 'login',
+    //redirectTo: 'login',
+    redirectTo: 'palet-ubi', 
     pathMatch: 'full'
   },
   {
@@ -29,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/configuraciones/configuraciones.module').then( m => m.ConfiguracionesPageModule)
   },
   {
-    path: 'pedido-pal',
+    path: 'pedido-pal/:tem/:emp/:ped/:pre',
     loadChildren: () => import('./pages/pedido-pal/pedido-pal.module').then( m => m.PedidoPalPageModule)
   },
   {

@@ -1,11 +1,12 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { Keyboard } from '@awesome-cordova-plugins/keyboard/ngx'
-import { AlertController, IonInput } from '@ionic/angular';
+import { AlertController, IonInput, ModalController } from '@ionic/angular';
 import { Pedidosdet, Pellet } from 'src/app/interfaces/interfaces';
 import { ApiService } from 'src/app/services/api.service';
 import { UtilService } from 'src/app/services/util.service';
+
 
 @Component({
   selector: 'app-pedido-edit',
@@ -33,6 +34,7 @@ export class PedidoEditPage implements OnInit {
                 private barcodeScanner: BarcodeScanner,
                 public alertController: AlertController,
                 private activatedRoute: ActivatedRoute,
+                private router: Router,
                 private keyboard: Keyboard
                 ) {  
 
@@ -40,10 +42,19 @@ export class PedidoEditPage implements OnInit {
                   
                 }
 
+
+async ionViewWillEnter() {
+  console.log('ionViewWillEnter');
+  await  this.fn_getPedidos_det(this.pedido.c_codigo_tem.trim() 
+  + this.pedido.c_codigo_emp.trim() 
+  +this.pedido.c_codigo_pdo.trim());
+  await this.codpal.setFocus() 
+
+}
+              
+
 async ngOnInit() {
- 
-
-
+  console.log('ngOnInit');
   await this.f_get_parametros();
   console.log('f_get_parametros')
   await this.ultilService.showLoading('Cargando detalle..')
@@ -68,6 +79,19 @@ f_get_parametros(){
   })
  
 
+}
+ fn_get_pallet_pededito_det(  ls_precentacion : string ){
+
+  console.log(ls_precentacion);
+  this.router.navigateByUrl(
+    'pedido-pal/'
+    + this.pedido.c_codigo_tem + '/'
+    + this.pedido.c_codigo_emp + '/'
+    + this.pedido.c_codigo_pdo + '/'
+    + ls_precentacion
+
+  );
+ 
 }
 
 async enterkey(){
@@ -231,4 +255,12 @@ fn_getPedidos_det(id:string){
     const { role } = await alert.onDidDismiss();
     console.log( `Dismissed with role: ${role}`);
   }
+
+ 
+  
+
+
+
 }
+
+
