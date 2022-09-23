@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, PopoverController } from '@ionic/angular';
-
-
+import {   ModalController, Platform, PopoverController } from '@ionic/angular';
 
 import { ApiService } from 'src/app/services/api.service';
 import { ConfiguracionService } from 'src/app/services/configuracion.service';
@@ -25,15 +23,13 @@ export class LoginPage implements OnInit {
     password: 'ccons'
   }
 
-  constructor(
+  constructor(private platform: Platform,
     private router: Router,
     private apiService: ApiService,
     private ultilService: UtilService,
     public popoverController: PopoverController,
     private modalController: ModalController,
     private configServ: ConfiguracionService,
-
-
 
   ) { }
 
@@ -52,7 +48,7 @@ ionViewDidEnter() {
  console.log('Home page will leave');
  }*/
 
- 
+
 
   ngOnInit() {
 

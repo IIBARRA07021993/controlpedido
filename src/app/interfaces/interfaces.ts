@@ -71,14 +71,17 @@ export interface Pellet {
 }
 
 
-export interface Palletpedido  {
+export interface Palletpedido {
    c_codigo_tem: string;
    c_codigo_emp: string;
    c_codigo_pdo: string;
    c_codigo_pal: string;
    c_codigo_pro: string;
+   v_nombre_pro: string;
    c_codigo_eti: string;
+   v_nombre_eti: string;
    c_codigo_col: string;
+   v_nombre_col: string;
    n_bulxpa_pal: number;
    n_peso_pal: number;
 }

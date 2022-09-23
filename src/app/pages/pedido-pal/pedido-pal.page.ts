@@ -19,6 +19,7 @@ export class PedidoPalPage implements OnInit {
   }
   titulo = 'Pallets'
   palletpedido :Palletpedido[] = [];
+  
   constructor(private activatedRoute: ActivatedRoute,
     private ultilService: UtilService, private apiserv: ApiService,) { }
 
@@ -29,9 +30,6 @@ export class PedidoPalPage implements OnInit {
     await this.ultilService.showLoading('Cargando detalle..')
     await this.fn_get_pallet_pedido();
     await this.ultilService.loading.dismiss();
-
-
-
   }
 
 
@@ -49,17 +47,17 @@ export class PedidoPalPage implements OnInit {
   }
 
   fn_get_pallet_pedido() {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
 
       console.log(this.pedido)
       this.apiserv.StoredProcedureGET(
-        'usp_control_pedidos_app/palets?as_operation=2&as_json=' + JSON.stringify(this.pedido)
+        'usp_control_pedidos_app/palets?as_operation=4&as_json=' + JSON.stringify(this.pedido)
       ).subscribe((resp: string) => {
         
         console.log(resp);
         console.log(JSON.parse(resp));
         this.palletpedido = JSON.parse(resp);
-        console.log(this.palletpedido);
+        console.log(this.palletpedido[0].v_nombre_pro);
         resolve(true);
 
 
@@ -77,6 +75,25 @@ export class PedidoPalPage implements OnInit {
        })
 
 })}
+
+
+trashClick(){
+
+  
+}
+
+
+
+async doRefresh(event :any) {
+
+  console.log(event);
+  await this.fn_get_pallet_pedido();
+  console.log('getPedidos');
+  await event.target.complete();
+  console.log('event.target.complete');
+
+}
+
 
 
 }

@@ -1,3 +1,5 @@
+<ion-app>
+
 <ion-header mode="ios" translucent="true">
   <ion-toolbar color="success">
     <ion-buttons slot="start">
@@ -7,12 +9,14 @@
     <ion-title class="ion-text-capitalize">
       <ion-label>
         <h4>{{pedido.v_nombre_dis}}</h4>
-        <ion-label>{{pedido.c_codigo_pdo}}</ion-label>
+        <ion-label>
+         <h2> {{pedido.c_codigo_pdo}}</h2>
+        </ion-label>
       </ion-label>
     </ion-title>
 
   </ion-toolbar>
-  <form>
+  <form  >
     <ion-item class="ion-no-border">
       <ion-row>
         <ion-col size="3" class="ion-padding-top">
@@ -34,7 +38,7 @@
 
 <ion-content [fullscreen]="true">
   <ion-list>
-    <ion-card  (click)="fn_get_pallet_pededito_det( det.c_codigo_pro +det.c_codigo_eti  + det.c_codigo_col)"   *ngFor="let det of pedidos_det"  > 
+    <ion-card  (click)="fn_get_pallet_pededito_det( det )"   *ngFor="let det of pedidos_det"  > 
       <ion-item    class="itemapp" lines="full">
         <ion-label>
           <ion-label id="presentacion">
@@ -55,7 +59,6 @@
               </ion-col>
               <ion-col size="4">
                 <ion-badge id="pal" color="danger">
-
                   Pallets:{{det.n_pallets_emp}}</ion-badge>
               </ion-col>
             </ion-row>
@@ -97,3 +100,4 @@
     </ion-card>
   </ion-list>
 </ion-content>
+</ion-app>

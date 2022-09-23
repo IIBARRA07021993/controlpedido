@@ -1,32 +1,38 @@
 <ion-menu side="start" menuId="first" contentId="main">
   <ion-header>
-    <ion-toolbar color="success" >
+    <ion-toolbar color="success">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
+  <ion-content [fullscreen]="true">
 
-    
-    <ion-list >
+
+    <ion-list>
       <ion-menu-toggle *ngFor="let c of componentes | async">
-         <ion-card> 
-          <ion-item  class="ion-no-border"  detail="true"
-            [routerLink]="c.url"  >
-            <ion-icon slot="start" [name]="c.icon"  ></ion-icon>
+        <ion-card>
+          <ion-item class="ion-no-border" detail="true" [routerLink]="c.url">
+            <ion-icon slot="start" [name]="c.icon"></ion-icon>
             {{c.name}}
-        </ion-item>
+          </ion-item>
         </ion-card>
-        </ion-menu-toggle>  
+      </ion-menu-toggle>
 
-        <ion-menu-toggle > 
-          <ion-card>
-            <ion-item (click)="onClick()"  routerLink='/login'  >
-              <ion-label>Cerrar Sección</ion-label>
-              <ion-icon slot="start" name="exit-outline"  ></ion-icon>
-            </ion-item>
+      <ion-menu-toggle>
+        <ion-card>
+          <ion-item routerLink='/login'>
+            <ion-label>Cerrar Sección</ion-label>
+            <ion-icon slot="start" name="exit-outline"></ion-icon>
+          </ion-item>
         </ion-card>
-        </ion-menu-toggle>
+      </ion-menu-toggle>
     </ion-list>
 
+    <ion-fab class="ion-padding" vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button (click)="exitApp()" color="success">
+        <ion-icon name="power-outline" color="light"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
   </ion-content>
+
 </ion-menu>

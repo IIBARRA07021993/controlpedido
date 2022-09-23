@@ -13,10 +13,9 @@ export class MenuComponent  {
 
 
 
-  onClick(){
 
-console.log('hola')
+  exitApp(){
+    navigator['app'].exitApp();
   }
-
 
 }
