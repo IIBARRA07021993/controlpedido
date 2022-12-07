@@ -116,14 +116,23 @@ export class PedidoEditPage implements OnInit {
 
   async enterkey() {
 
-    console.log('paso 1')
-    await this.ultilService.showLoading('Valiando Pallet...')
-    console.log('showLoading');
-    await this.fn_usp_control_pedidos_app('1')
-    console.log('paso 3')
-    await this.ultilService.loading.dismiss();
-    console.log('dismiss');
 
+    if (this.pedidos_det[0].c_estatus_pdo == '3') {
+      this.codigo = ""
+      this.codpal.setFocus()
+      this.ultilService.AlertaOK('Atención ', 'Pedido Surtido! ',
+                                  'El pedido se encuentra surtido, Para agregar más pallets es necesario cambiar el estatus a surtiendo.', 'OK')
+    } else {
+
+
+      console.log('paso 1')
+      await this.ultilService.showLoading('Valiando Pallet...')
+      console.log('showLoading');
+      await this.fn_usp_control_pedidos_app('1')
+      console.log('paso 3')
+      await this.ultilService.loading.dismiss();
+      console.log('dismiss');
+    }
   }
 
 
@@ -202,7 +211,7 @@ export class PedidoEditPage implements OnInit {
             1500,
             'warning-outline',
             'danger');
-     
+
           resolve(false);
         }
 
@@ -217,7 +226,7 @@ export class PedidoEditPage implements OnInit {
           1500,
           'warning-outline',
           'danger');
-      
+
         resolve(false)
 
       })

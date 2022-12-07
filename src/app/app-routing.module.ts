@@ -5,7 +5,7 @@ const routes: Routes = [
  {
     path: '',
     redirectTo: 'login',
-    //redirectTo: 'palet-ubi', 
+   // redirectTo: 'palet-ubi', 
     pathMatch: 'full'
   },
   {
@@ -40,6 +40,18 @@ const routes: Routes = [
   {
     path: 'man-virtual',
     loadChildren: () => import('./pages/man-virtual/man-virtual.module').then( m => m.ManVirtualPageModule)
+  },
+  {
+    path: 'sorting-pal',
+    loadChildren: () => import('./pages/sorting-pal/sorting-pal.module').then( m => m.SortingPalPageModule)
+  },
+  {
+    path: 'sorting-est',
+    loadChildren: () => import('./pages/sorting-est/sorting-est.module').then( m => m.SortingEstPageModule)
+  },
+  {
+    path: 'palet-temp',
+    loadChildren: () => import('./pages/palet-temp/palet-temp.module').then( m => m.PaletTempPageModule)
   }
 ];
 

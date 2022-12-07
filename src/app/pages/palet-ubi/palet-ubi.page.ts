@@ -1,17 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component, OnInit  } from '@angular/core';
+
 
 @Component({
   selector: 'app-palet-ubi',
   templateUrl: './palet-ubi.page.html',
   styleUrls: ['./palet-ubi.page.scss'],
 })
-export class PaletUbiPage implements OnInit {
+export class PaletUbiPage implements OnInit  {
+  
 
 
-  titulo ='Posición en Cuarto Frio'
+
+  titulo = 'Posición en Cuarto Frio'
   constructor() { }
 
   ngOnInit() {
+
+
+
   }
+
+
+
+
+
+  
+
 
 }

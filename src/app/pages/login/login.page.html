@@ -10,8 +10,8 @@
         <img src="assets\icon\as.jpg">
       </ion-avatar>
       <ion-title class="ion-text-center">
-        <h1>Pedidos <br>
-          AgroSmart</h1>
+        <h1>AgroSmart <br>
+            Empaque</h1>
       </ion-title>
       <ion-icon (click)="fn_configuraciones()" class="ion-padding" slot="end" name="settings-outline" size="large">
       </ion-icon>
@@ -24,14 +24,14 @@
     <form #formulario="ngForm" class="ion-padding">
       <ion-item class="ion-margin-bottom">
         <ion-label position="floating">Usuario</ion-label>
-        <ion-input class="ion-text-uppercase" type="text" name="user" [(ngModel)]="usuario.user" placeholder="Usuario"
+        <ion-input class="ion-text-uppercase" type="text" name="user" [(ngModel)]="usuario.c_codigo_usu" placeholder="Usuario"
           required>
         </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" name="password" [(ngModel)]="usuario.password" placeholder="Contraseña" required>
+        <ion-input type="password" name="password" [(ngModel)]="usuario.v_passwo_usu" placeholder="Contraseña" required>
         </ion-input>
       </ion-item>
 

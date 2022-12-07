@@ -16,7 +16,7 @@
       </ion-icon>
     </ion-toolbar>
     <ion-searchbar placeholder="Buscar Pedido" animated mode="md" (ionChange)="fn_filtro_pedido($event)" debounce="250"
-      type="text">
+      type="tel" >
 
     </ion-searchbar>
   </ion-header>
@@ -25,19 +25,23 @@
       <ion-refresher-content> </ion-refresher-content>
     </ion-refresher>
 
-    <ion-list  #listasliding>
-      <ion-card  (click)="fn_surtir_ped(ped)" *ngFor="let ped of pedidos |async 
+    <ion-list #listasliding>
+      <ion-card (click)="fn_surtir_ped(ped)" *ngFor="let ped of pedidos |async 
                                             | filtro:texto_filtro:'c_codigo_pdo'
-                                            | filtro:ls_estatus:'c_estatus_pdo'"
-                                            >
+                                            | filtro:ls_estatus:'c_estatus_pdo'">
+
         <ion-item-sliding>
-          <ion-item-options (click)="fn_estatus_surtido_ped(ped)" side="start">
-            <ion-item-option color="success">
+          <ion-item-options *ngIf="ls_estatus != '3'" (click)="fn_estatus_surtido_ped(ped)" side="start">
+            <ion-item-option   color="success">
               <ion-icon slot="icon-only" name="checkmark-done-outline"></ion-icon>
             </ion-item-option>
           </ion-item-options>
-         
 
+          <ion-item-options  *ngIf="ls_estatus == '3'" (click)="fn_estatus_surtido_ped(ped)" side="end">
+            <ion-item-option   color="danger">
+              <ion-icon slot="icon-only" name="duplicate-outline"></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
 
           <ion-item class="itemapp" lines="full">
             <ion-grid fixed>
@@ -70,9 +74,10 @@
               </ion-row>
             </ion-grid>
           </ion-item>
+        
         </ion-item-sliding>
-
       </ion-card>
+
     </ion-list>
 
     <ion-list *ngIf="(pedidos|async) == null">

@@ -95,11 +95,11 @@ export class PedidosPage implements OnInit {
     this.listapedido.closeSlidingItems()
     console.log('sliding');
     if (this.ls_estatus =='1' || this.ls_estatus =='2') {
-      await this.Alerta_update_estatus(pedido  , '3');
+      await this.Alerta_update_estatus(pedido , '3')
     }else{
       await this.Alerta_update_estatus(pedido , '2');
     }
-    await this.getPedidos()
+  
   }
 
   fn_surtir_ped(pedido: any) {
@@ -216,6 +216,8 @@ export class PedidosPage implements OnInit {
             console.log('fn_update_estatus_ped')
             await this.ultilService.loading.dismiss();
             console.log('dismiss');
+            await this.getPedidos();
+            console.log('getPedidos');
 
           },
         },

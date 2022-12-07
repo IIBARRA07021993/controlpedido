@@ -13,6 +13,8 @@
          <h2> {{pedido.c_codigo_pdo}}</h2>
         </ion-label>
       </ion-label>
+
+      <ion-icon slot="end" name="add"></ion-icon>
     </ion-title>
 
   </ion-toolbar>
@@ -25,7 +27,7 @@
         <ion-col size="6">
           <ion-label position="floating">Código</ion-label>
           <ion-input #codpal (keydown.enter)="enterkey()" name="codigopal" [(ngModel)]="codigo" [autofocus]="true"
-            type="text" placeholder="0000000001" maxlength="10"></ion-input>
+            type="number" placeholder="0000000001" maxlength="10"></ion-input>
         </ion-col>
       </ion-row>
     </ion-item>

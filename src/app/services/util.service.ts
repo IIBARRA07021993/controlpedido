@@ -21,7 +21,7 @@ export class UtilService {
       message: mensaje,
       duration: timpo,
       icon: icon ,
-      position:'bottom' ,
+      position: 'middle',
       color: color
     });
     toast.present();
@@ -29,9 +29,9 @@ export class UtilService {
 
 
 
+
   async presentToastok( header:string , mensaje :string  , timpo :number , icon:string  , color : string ) {
     const toast = await this.toastController.create({
-      
       header: header,
       mode :'ios',
       message: mensaje,
